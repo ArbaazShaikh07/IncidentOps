@@ -162,6 +162,14 @@ async def seed_data():
     
     incidents_data = [
         {
+            "incident_type": "merchant_complaint",
+            "detected_at": (datetime.now(timezone.utc) - timedelta(days=10)).isoformat(),
+            "affected_bank": "Axis Bank",
+            "payment_method": "Credit Card",
+            "severity": "medium",
+            "status": "under_audit"
+        },
+        {
             "incident_type": "failure_spike",
             "detected_at": (datetime.now(timezone.utc) - timedelta(days=15)).isoformat(),
             "affected_bank": "HDFC Bank",
@@ -176,14 +184,6 @@ async def seed_data():
             "payment_method": "IMPS",
             "severity": "high",
             "status": "closed"
-        },
-        {
-            "incident_type": "merchant_complaint",
-            "detected_at": (datetime.now(timezone.utc) - timedelta(days=10)).isoformat(),
-            "affected_bank": "Axis Bank",
-            "payment_method": "Credit Card",
-            "severity": "medium",
-            "status": "under_audit"
         },
         {
             "incident_type": "failure_spike",
