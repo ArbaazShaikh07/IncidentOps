@@ -575,20 +575,20 @@ const AuditDetail = () => {
                 <strong>Cannot close audit. Requirements:</strong>
                 <ul style={{ marginTop: "10px", paddingLeft: "20px" }}>
                   <li>
-                    All checklist items completed:{" "
+                    All checklist items completed:{" "}
                     {auditData.checklist.every((item) => item.response !== "pending")
                       ? "✓"
                       : "✗"}
                   </li>
                   <li>At least one finding: {auditData.findings.length > 0 ? "✓" : "✗"}</li>
                   <li>
-                    All action items completed:{" "
+                    All action items completed:{" "}
                     {auditData.actions.every((action) => action.status === "completed")
                       ? "✓"
                       : "✗"}
                   </li>
                   <li>
-                    Closure validation done:{" "
+                    Closure validation done:{" "}
                     {auditData.validation && auditData.validation.validation_done ? "✓" : "✗"}
                   </li>
                 </ul>
