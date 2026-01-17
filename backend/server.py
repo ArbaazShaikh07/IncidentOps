@@ -423,6 +423,24 @@ async def create_audit(incident_id: str):
     )
     await db.audits.insert_one(audit.model_dump())
     
+    checklist_questions = [
+        "Was the incident detected within SLA timeframe?",
+        "Were all stakeholders notified promptly?",
+        "Was root cause analysis completed?",
+        "Were impacted transactions identified?",
+        "Was customer communication sent out?",
+        "Were monitoring alerts functioning correctly?",
+        "Has preventive action been identified?"
+    ]
+    
+    for question in checklist_questions[:6]:
+        checklist_item = AuditChecklistItem(
+            audit_id=audit.audit_id,
+            question=question,
+            response=ChecklistResponse.pending
+        )
+        await db.checklist.insert_one(checklist_item.model_dump())
+    
     await db.incidents.update_one(
         {"incident_id": incident_id},
         {"$set": {"status": "under_audit"}}
